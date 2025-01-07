@@ -78,7 +78,7 @@ const reviewList: ReviewProps[] = [
 
 export const TestimonialSection = () => {
   return (
-    <section id="testimonials" className="container py-24 sm:py-32">
+    <section id="testimonials" className="container py-24 sm:py-32 px-6 sm:px-12 lg:px-24">
       <div className="text-center mb-8">
         <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
           Testimonials
@@ -93,7 +93,7 @@ export const TestimonialSection = () => {
         opts={{
           align: "start",
         }}
-        className="relative w-[80%] sm:w-[90%] lg:max-w-screen-xl mx-auto"
+        className="relative w-[90%] lg:max-w-screen-xl mx-auto"
       >
         <CarouselContent>
           {reviewList.map((review) => (
@@ -104,11 +104,12 @@ export const TestimonialSection = () => {
               <Card className="bg-muted/50 dark:bg-card">
                 <CardContent className="pt-6 pb-0">
                   <div className="flex gap-1 pb-6">
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
+                    {[...Array(Math.floor(review.rating))].map((_, index) => (
+                      <Star
+                        key={index}
+                        className="size-4 fill-primary text-primary"
+                      />
+                    ))}
                   </div>
                   {`"${review.comment}"`}
                 </CardContent>
@@ -117,10 +118,10 @@ export const TestimonialSection = () => {
                   <div className="flex flex-row items-center gap-4">
                     <Avatar>
                       <AvatarImage
-                        src="https://avatars.githubusercontent.com/u/75042455?v=4"
-                        alt="radix"
+                        src={review.image}
+                        alt={review.name}
                       />
-                      <AvatarFallback>SV</AvatarFallback>
+                      <AvatarFallback>{review.name[0]}</AvatarFallback>
                     </Avatar>
 
                     <div className="flex flex-col">

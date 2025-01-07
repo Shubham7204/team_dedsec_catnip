@@ -9,8 +9,8 @@ import Link from "next/link";
 export const HeroSection = () => {
   const { theme } = useTheme();
   return (
-    <section className="container w-full">
-      <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
+    <section className="container w-full px-4 md:px-8 lg:px-16">
+      <div className="grid place-items-center gap-8 mx-auto py-20 md:py-32 lg:max-w-screen-xl text-center">
         <div className="text-center space-y-8">
           <Badge variant="outline" className="text-sm py-2">
             <span className="mr-2 text-primary">
@@ -34,8 +34,8 @@ export const HeroSection = () => {
             creators. Get access to exclusive resources, tutorials, and support.`}
           </p>
 
-          <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+            <Button className="w-full md:w-auto px-8 py-3 font-bold group/arrow">
               Get Started
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
@@ -43,13 +43,13 @@ export const HeroSection = () => {
             <Button
               asChild
               variant="secondary"
-              className="w-5/6 md:w-1/4 font-bold"
+              className="w-full md:w-auto px-8 py-3 font-bold"
             >
               <Link
                 href="https://github.com/nobruf/shadcn-landing-page.git"
                 target="_blank"
               >
-                Github respository
+                Github Repository
               </Link>
             </Button>
           </div>
@@ -60,7 +60,7 @@ export const HeroSection = () => {
           <Image
             width={1200}
             height={1200}
-            className="w-full md:w-[1200px] mx-auto rounded-lg relative rouded-lg leading-none flex items-center border border-t-2 border-secondary  border-t-primary/30"
+            className="w-full max-w-screen-lg mx-auto rounded-lg relative border border-t-2 border-secondary border-t-primary/30"
             src={
               theme === "light"
                 ? "/hero-image-light.jpeg"

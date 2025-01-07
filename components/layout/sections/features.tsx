@@ -50,7 +50,7 @@ const featureList: FeaturesProps[] = [
 
 export const FeaturesSection: React.FC = () => {
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <section className="container mx-auto px-6 sm:px-12 lg:px-24 py-24">
       <div className="text-center">
         <h3 className="text-primary font-medium">Features</h3>
         <h1 className="text-4xl font-bold">What Makes Us Different</h1>

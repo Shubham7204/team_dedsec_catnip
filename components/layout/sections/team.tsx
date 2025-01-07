@@ -46,7 +46,66 @@ export const TeamSection = () => {
         },
       ],
     },
-    // ... rest of the team members remain the same ...
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=62",
+      firstName: "Sophia",
+      lastName: "Carter",
+      positions: ["UI/UX Designer", "Visual Artist"],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/sophia-carter/",
+        },
+        {
+          name: "Github",
+          url: "https://github.com/sophiaCarter",
+        },
+        {
+          name: "X",
+          url: "https://x.com/sophia_carter",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=34",
+      firstName: "Ethan",
+      lastName: "Johnson",
+      positions: ["Backend Developer", "Database Specialist"],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/ethan-johnson/",
+        },
+        {
+          name: "Github",
+          url: "https://github.com/ethanJohnson",
+        },
+        {
+          name: "X",
+          url: "https://x.com/ethan_johnson",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=19",
+      firstName: "Ava",
+      lastName: "Miller",
+      positions: ["Project Manager", "Scrum Master"],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/ava-miller/",
+        },
+        {
+          name: "Github",
+          url: "https://github.com/avaMiller",
+        },
+        {
+          name: "X",
+          url: "https://x.com/ava_miller",
+        },
+      ],
+    },
   ];
 
   const socialIcon = (socialName: string) => {
