@@ -20,66 +20,70 @@ const benefitList: BenefitProps[] = [
     icon: Blocks,
     title: "Build Brand Trust",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Establish credibility and trust with your audience through consistent branding and professional presentation of your products or services.",
   },
   {
     icon: LineChart,
     title: "More Leads",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.",
+      "Attract high-quality leads and expand your customer base with targeted marketing strategies and optimized conversion funnels.",
   },
   {
     icon: Wallet,
     title: "Higher Conversions",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam",
+      "Transform interested visitors into loyal customers with persuasive content and streamlined user experiences that drive action.",
   },
   {
     icon: Sparkle,
     title: "Test Marketing Ideas",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Experiment with different marketing approaches and messaging to discover what resonates best with your target audience.",
   },
 ];
 
 export const BenefitsSection = () => {
   return (
-    <section id="benefits" className="container py-24 sm:py-32">
-      <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
-        <div>
-          <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
+    <section id="benefits" className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        {/* Left side content */}
+        <div className="flex flex-col space-y-4 lg:sticky lg:top-24">
+          <h2 className="text-lg text-primary font-medium tracking-wider">
+            Benefits
+          </h2>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold">
             Your Shortcut to Success
           </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-            ducimus reprehenderit architecto rerum similique facere odit
-            deleniti necessitatibus quo quae.
+          
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
+            Transform your business potential with our proven strategies and tools. 
+            We help you accelerate growth, increase efficiency, and achieve your goals faster.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-4 w-full">
+        {/* Right side cards */}
+        <div className="grid sm:grid-cols-2 gap-4">
           {benefitList.map(({ icon: Icon, title, description }, index) => (
             <Card
               key={title}
-              className="bg-muted/50 dark:bg-card hover:bg-background transition-all delay-75 group/number"
+              className="bg-muted/50 dark:bg-card hover:bg-background transition-colors duration-200 group/number"
             >
-              <CardHeader>
-                <div className="flex justify-between">
+              <CardHeader className="pb-4">
+                <div className="flex justify-between items-start">
                   <Icon
-                    size={32}
-                    className="mb-6 text-primary"
+                    size={28}
+                    className="text-primary"
                   />
-                  <span className="text-5xl text-muted-foreground/15 font-medium transition-all delay-75 group-hover/number:text-muted-foreground/30">
-                    0{index + 1}
+                  <span className="text-4xl text-muted-foreground/15 font-medium transition-colors duration-200 group-hover/number:text-muted-foreground/30">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
 
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="text-xl mt-4">{title}</CardTitle>
               </CardHeader>
 
-              <CardContent className="text-muted-foreground">
+              <CardContent className="text-muted-foreground text-sm sm:text-base">
                 {description}
               </CardContent>
             </Card>

@@ -28,8 +28,7 @@ const plans: PlanProps[] = [
     title: "Free",
     popular: 0,
     price: 0,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
     buttonText: "Start Free Trial",
     benefitList: [
       "1 team member",
@@ -43,11 +42,10 @@ const plans: PlanProps[] = [
     title: "Premium",
     popular: 1,
     price: 45,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Get starterd",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    buttonText: "Get Started",
     benefitList: [
-      "4 team member",
+      "4 team members",
       "8 GB storage",
       "Upto 6 pages",
       "Priority support",
@@ -58,11 +56,10 @@ const plans: PlanProps[] = [
     title: "Enterprise",
     popular: 0,
     price: 120,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Contact US",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    buttonText: "Contact Us",
     benefitList: [
-      "10 team member",
+      "10 team members",
       "20 GB storage",
       "Upto 10 pages",
       "Phone & email support",
@@ -73,67 +70,81 @@ const plans: PlanProps[] = [
 
 export const PricingSection = () => {
   return (
-    <section className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Pricing
-      </h2>
+    <section id="pricing" className="container py-24 sm:py-32">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-lg text-primary font-medium tracking-wider">
+            Pricing
+          </h2>
 
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        Get unlimitted access
-      </h2>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            Get Unlimited Access
+          </h3>
 
-      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
-        Lorem ipsum dolor sit amet consectetur adipisicing reiciendis.
-      </h3>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Lorem ipsum dolor sit amet consectetur adipisicing reiciendis.
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
-        {plans.map(
-          ({ title, popular, price, description, buttonText, benefitList }) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {plans.map(({ title, popular, price, description, buttonText, benefitList }) => (
             <Card
               key={title}
-              className={
-                popular === PopularPlan?.YES
-                  ? "drop-shadow-xl shadow-black/10 dark:shadow-white/10 border-[1.5px] border-primary lg:scale-[1.1]"
+              className={`relative flex flex-col ${
+                popular === PopularPlan.YES
+                  ? "border-primary shadow-lg scale-[1.02] lg:scale-[1.05]"
                   : ""
-              }
+              }`}
             >
-              <CardHeader>
-                <CardTitle className="pb-2">{title}</CardTitle>
+              {popular === PopularPlan.YES && (
+                <div className="absolute -top-5 left-0 right-0 mx-auto w-fit px-4 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
+                  Most Popular
+                </div>
+              )}
 
-                <CardDescription className="pb-4">
-                  {description}
-                </CardDescription>
+              <CardHeader className="flex flex-col gap-4">
+                <div className="space-y-1">
+                  <CardTitle className="text-2xl">{title}</CardTitle>
+                  <CardDescription className="text-base">
+                    {description}
+                  </CardDescription>
+                </div>
 
-                <div>
-                  <span className="text-3xl font-bold">${price}</span>
-                  <span className="text-muted-foreground"> /month</span>
+                <div className="flex items-baseline">
+                  <span className="text-4xl font-bold">${price}</span>
+                  {price > 0 && (
+                    <span className="text-muted-foreground ml-2">/month</span>
+                  )}
                 </div>
               </CardHeader>
 
-              <CardContent className="flex">
-                <div className="space-y-4">
+              <CardContent className="flex-1">
+                <ul className="space-y-4">
                   {benefitList.map((benefit) => (
-                    <span key={benefit} className="flex">
-                      <Check className="text-primary mr-2" />
-                      <h3>{benefit}</h3>
-                    </span>
+                    <li key={benefit} className="flex items-center gap-3">
+                      <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span>{benefit}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </CardContent>
 
               <CardFooter>
                 <Button
-                  variant={
-                    popular === PopularPlan?.YES ? "default" : "secondary"
-                  }
+                  variant={popular === PopularPlan.YES ? "default" : "secondary"}
                   className="w-full"
+                  size="lg"
                 >
                   {buttonText}
                 </Button>
               </CardFooter>
             </Card>
-          )
-        )}
+          ))}
+        </div>
+
+        <div className="mt-12 text-center text-muted-foreground">
+          <p>All prices are in USD and billed annually.</p>
+        </div>
       </div>
     </section>
   );
