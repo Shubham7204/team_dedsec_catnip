@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Medical Report Analyzer
 
-## Getting Started
+## API Routes
 
-First, run the development server:
+- */app/api/analyze:*  
+  Analyzes food product images to provide ingredient details, nutritional insights, and dietary information (e.g., vegan, halal). Suggests healthier alternatives and flags potential health concerns.
 
-```bash
+- */app/api/chat:*  
+  A medical chatbot answering user queries about medicines using verified data from the FDA or AI-generated content. Provides information such as medicine name, uses, warnings, and dosage.
+
+- */app/api/extractreportgemini:*  
+  Extracts key findings from clinical report images, identifies abnormal biomarkers, and summarizes the report in a concise way, highlighting numerical values and key health information.
+
+- */app/api/gemini-search:*  
+  Allows users to search for detailed medical information about medicines, querying the FDA for official data or using AI to provide relevant details such as descriptions, uses, warnings, and dosages.
+
+- */app/api/medichatgemini:*  
+  A medical chat service powered by AI (Gemini), answering queries about medicines. It offers reliable and understandable information based on official sources, covering uses, side effects, and recommended dosages.
+
+- */app/api/medicine:*  
+  Provides detailed information about specific medicines, fetching data from the FDA or generating content using AI. It presents details like medicine name, indications, side effects, and dosage recommendations.
+
+---
+
+## Pages
+
+### *Food Page:*  
+Upload or select a food product image to analyze its ingredients, nutritional value, and dietary information. Provides insights to make health-conscious decisions.
+
+### *Report Page:*  
+View and update medical reports with a chat interface to interact with the medical assistant. Easily manage reports and receive guidance through conversations.
+
+### *Search Medicine Page:*  
+Search for medicines, view detailed information, and chat about the selected medicine. Access essential details like warnings, dosage, and usage instantly.
+
+---
+
+## API Keys Used
+
+- *FDA API:*  
+  Provides detailed information on medicines, such as usage, dosage, warnings, and side effects. Serves as the primary source for medicine-related data.
+
+- *Gemini API:*  
+  Delivers additional information when the FDA API does not return a result. Provides further context on the medicine, ensuring a comprehensive response.
+
+---
+
+## Medical Report Analysis with RAG and Pinecone
+
+This project uses *Pinecone* and *RAG (Retrieval-Augmented Generation)* to enhance a medical chatbot with comprehensive medical knowledge and personalized patient data, providing accurate and tailored responses.
+
+### Key Features:
+- *Comprehensive Medical Database:* Includes reliable medical sources like textbooks and guidelines.
+- *Personalized Responses:* Integrates patient history for customized diagnostic recommendations.
+- *Efficient Data Storage:* Medical documents are split into chunks and stored in Pinecone for fast retrieval.
+- *Context-Aware LLM:* Uses Hugging Face’s LLM to generate responses based on retrieved data.
+- *Next.js UI:* A user-friendly interface for seamless interaction.
+
+### Architecture Diagram:
+![image](https://github.com/user-attachments/assets/f1e06762-e780-46bd-9a10-2fc7ae8d2b8e)
+---
+
+## Project Installation Steps
+
+### 1. Main Project Installation
+
+#### *Install Dependencies*  
+bash
+npm install
+
+
+#### *Run the Project*  
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application will run on [http://localhost:3000](http://localhost:3000)  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Uploading Book to Pinecone
 
-## Learn More
+### Install Dependencies  
+bash
+npm install  
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Setup Environment Variables  
+- Create a .env file in the root directory.  
+- Add your *PINECONE_API_KEY* by signing up at [Pinecone](https://www.pinecone.io/) and creating an index.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Example .env file:**  
+env
+PINECONE_API_KEY=your-pinecone-api-key  
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Add Documents  
+- Create a folder named *documents* in the project root.  
+- Place your medical PDF files in this folder for processing and uploading to Pinecone.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Run the Project  
+bash
+npm run dev  
+
+
+The application will run on [http://localhost:3000](http://localhost:3000)
