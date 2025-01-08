@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { Star, StarHalf } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
+type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline' | null | undefined; // Updated BadgeVariant
+
 interface AnalysisResultProps {
   analysis: string;
 }
@@ -29,7 +31,7 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
   const rating = extractRating(analysis);
 
   const getDietaryInfo = (text: string) => {
-    const restrictions = [];
+    const restrictions: { name: string; variant: BadgeVariant }[] = [];
     if (text.includes('Vegan: No')) restrictions.push({ name: 'Not Vegan', variant: 'destructive' });
     if (text.includes('Vegan: Yes')) restrictions.push({ name: 'Vegan', variant: 'secondary' });
     if (text.includes('Halal: Yes')) restrictions.push({ name: 'Halal', variant: 'secondary' });
