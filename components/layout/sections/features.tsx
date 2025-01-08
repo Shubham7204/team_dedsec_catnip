@@ -1,29 +1,29 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import * as LucideIcons from "lucide-react";
+import { FileText, Pill, BarChart } from "lucide-react";
 import React from "react";
 
 interface FeaturesProps {
-  icon: keyof typeof LucideIcons;
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
 
 const featureList: FeaturesProps[] = [
   {
-    icon: "FileText",
+    icon: <FileText className="w-8 h-8 text-primary" />,
     title: "Medical Report Analyzer",
     description:
       "Scans medical reports via image or text queries, uses RAG with Pinecone for context-rich insights from medical databases, and provides chatbot-based contextual responses.",
   },
   {
-    icon: "Pill",
+    icon: <Pill className="w-8 h-8 text-primary" />,
     title: "Medicine Analyzer",
     description:
       "Uses FDA and Gemini APIs to analyze medicines, answering user queries on medicine usage, dosage, and purpose, among others.",
   },
   {
-    icon: "BarChart",
+    icon: <BarChart className="w-8 h-8 text-primary" />,
     title: "Food Nutrition Analyzer",
     description:
       "Processes text or image-based nutrition labels and extracts insights using the Gemini API to offer detailed nutrition information and clarity.",
@@ -43,12 +43,11 @@ export const FeaturesSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
         {featureList.map(({ icon, title, description }) => {
-          const Icon = LucideIcons[icon];
           return (
             <Card key={title} className="border border-gray-200 hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="space-y-4">
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-primary" />
+                  {icon}
                 </div>
                 <CardTitle className="text-xl">{title}</CardTitle>
               </CardHeader>
