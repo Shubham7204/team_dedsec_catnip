@@ -1,4 +1,4 @@
-// src/components/FeaturesSection.tsx
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import * as LucideIcons from "lucide-react";
 import React from "react";
@@ -11,40 +11,22 @@ interface FeaturesProps {
 
 const featureList: FeaturesProps[] = [
   {
-    icon: "TabletSmartphone",
-    title: "Mobile Friendly",
+    icon: "FileText",
+    title: "Medical Report Analyzer",
     description:
-      "Our website is fully responsive and optimized for all mobile devices, ensuring a seamless experience for your users on any screen size.",
+      "Scans medical reports via image or text queries, uses RAG with Pinecone for context-rich insights from medical databases, and provides chatbot-based contextual responses.",
   },
   {
-    icon: "BadgeCheck",
-    title: "Social Proof",
+    icon: "Pill",
+    title: "Medicine Analyzer",
     description:
-      "Build trust with potential customers through testimonials, reviews, and case studies that showcase your success stories and satisfied clients.",
+      "Uses FDA and Gemini APIs to analyze medicines, answering user queries on medicine usage, dosage, and purpose, among others.",
   },
   {
-    icon: "Goal",
-    title: "Targeted Content",
+    icon: "BarChart",
+    title: "Food Nutrition Analyzer",
     description:
-      "Create personalized content that speaks directly to your audience's needs, pain points, and desires, increasing engagement and conversion rates.",
-  },
-  {
-    icon: "PictureInPicture",
-    title: "Strong Visuals",
-    description:
-      "Captivate your audience with high-quality images, videos, and graphics that enhance your message and make your content more memorable.",
-  },
-  {
-    icon: "MousePointerClick",
-    title: "Clear CTA",
-    description:
-      "Guide your visitors towards desired actions with strategically placed, compelling call-to-action buttons that drive conversions.",
-  },
-  {
-    icon: "Newspaper",
-    title: "Clear Headline",
-    description:
-      "Grab attention instantly with powerful, benefit-driven headlines that communicate your value proposition clearly and effectively.",
+      "Processes text or image-based nutrition labels and extracts insights using the Gemini API to offer detailed nutrition information and clarity.",
   },
 ];
 
@@ -53,11 +35,9 @@ export const FeaturesSection: React.FC = () => {
     <section className="container mx-auto px-6 sm:px-12 lg:px-24 py-24">
       <div className="text-center">
         <h3 className="text-primary font-medium">Features</h3>
-        <h1 className="text-4xl font-bold">What Makes Us Different</h1>
+        <h1 className="text-4xl font-bold">What Makes MedNourish AI Different</h1>
         <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
-          Discover the key features that set our platform apart and help your
-          business succeed in the digital landscape. We combine cutting-edge
-          technology with proven strategies.
+          Leverage the power of Generative AI to analyze medical reports, understand food nutrition, and get insightful medicine details. Here's how we make healthcare smarter.
         </p>
       </div>
 

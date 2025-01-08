@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import MedicineInfo from '@/components/MedicineInfo'
 import ChatInterface from '@/components/ChatInterface'
+import { Search, Clock } from 'lucide-react'
 
 const MAX_RECENT_SEARCHES = 5
 
@@ -54,99 +55,137 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Medicine Search and Chat</h1>
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Search for a Medicine</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Input 
-              type="text" 
-              value={query} 
-              onChange={(e) => setQuery(e.target.value)} 
-              placeholder="Enter medicine name" 
-              className="flex-grow"
-            />
-            <Button 
-              onClick={() => searchMedicines(query)} 
-              disabled={isSearching}
-            >
-              {isSearching ? 'Searching...' : 'Search'}
-            </Button>
-          </div>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-          {recentSearches.length > 0 && (
-            <div className="mt-4">
-              <p className="text-sm text-gray-600">Recent searches:</p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {recentSearches.map((search, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setQuery(search)
-                      searchMedicines(search)
-                    }}
-                  >
-                    {search}
-                  </Button>
-                ))}
+    <div className="min-h-screen bg-background">
+      <main className="container mx-auto px-4 py-8 max-w-7xl">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-lg text-primary font-medium tracking-wider mb-2">
+            MEDICAL ASSISTANT
+          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Medicine Search and Chat
+          </h1>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Search for medicines, view detailed information, and get instant answers to your questions.
+          </p>
+        </div>
+
+        {/* Search Card */}
+        <Card className="mb-8 border-secondary/50 bg-black text-white dark:bg-card dark:text-foreground">
+          <CardHeader>
+            <CardTitle className="text-xl">Search for a Medicine</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-grow">
+                <Input 
+                  type="text" 
+                  value={query} 
+                  onChange={(e) => setQuery(e.target.value)} 
+                  placeholder="Enter medicine name" 
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pr-12"
+                />
               </div>
+              <Button 
+                onClick={() => searchMedicines(query)} 
+                disabled={isSearching}
+                className="bg-primary hover:bg-primary/90 text-white"
+              >
+                {isSearching ? (
+                  'Searching...'
+                ) : (
+                  <>
+                    <Search className="w-4 h-4 mr-2" />
+                    Search
+                  </>
+                )}
+              </Button>
             </div>
-          )}
-        </CardContent>
-      </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Search Results</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {medicines.length > 0 ? (
-              <ul className="space-y-2">
-                {medicines.map((medicine, index) => (
-                  <li 
-                    key={medicine.id || index} 
-                    className="cursor-pointer hover:bg-gray-100 p-2 rounded"
-                    onClick={() => setSelectedMedicine(medicine)}
-                  >
-                    <div className="font-medium">{medicine.name}</div>
-                    {medicine.genericName && (
-                      <div className="text-sm text-gray-600">
-                        {medicine.genericName}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-gray-500">
-                No medicines found. Try searching for a medicine.
-              </p>
+            
+            {error && (
+              <p className="text-red-400 mt-3 font-medium">{error}</p>
+            )}
+            
+            {recentSearches.length > 0 && (
+              <div className="mt-6">
+                <div className="flex items-center gap-2 text-white/70 mb-3">
+                  <Clock className="w-4 h-4" />
+                  <p className="text-sm font-medium">Recent searches:</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentSearches.map((search, index) => (
+                    <Button
+                      key={index}
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => {
+                        setQuery(search)
+                        searchMedicines(search)
+                      }}
+                      className="bg-white/10 hover:bg-white/20 text-white border-white/20"
+                    >
+                      {search}
+                    </Button>
+                  ))}
+                </div>
+              </div>
             )}
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Medicine Information and Chat</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {selectedMedicine ? (
-              <>
-                <MedicineInfo medicine={selectedMedicine} />
-                <ChatInterface medicine={selectedMedicine} />
-              </>
-            ) : (
-              <p className="text-gray-500">
-                Select a medicine to view information and chat.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+
+        {/* Results Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Search Results */}
+          <Card className="border-secondary/50 bg-black text-white dark:bg-card dark:text-foreground">
+            <CardHeader>
+              <CardTitle className="text-xl">Search Results</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {medicines.length > 0 ? (
+                <ul className="space-y-2">
+                  {medicines.map((medicine, index) => (
+                    <li 
+                      key={medicine.id || index} 
+                      className="cursor-pointer hover:bg-white/10 p-3 rounded-lg transition-colors"
+                      onClick={() => setSelectedMedicine(medicine)}
+                    >
+                      <div className="font-medium">{medicine.name}</div>
+                      {medicine.genericName && (
+                        <div className="text-sm text-white/70 dark:text-gray-400">
+                          {medicine.genericName}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-white/70 dark:text-gray-400">
+                  No medicines found. Try searching for a medicine.
+                </p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Medicine Info and Chat */}
+          <Card className="border-secondary/50 bg-black text-white dark:bg-card dark:text-foreground">
+            <CardHeader>
+              <CardTitle className="text-xl">Medicine Information and Chat</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {selectedMedicine ? (
+                <>
+                  <MedicineInfo medicine={selectedMedicine} />
+                  <ChatInterface medicine={selectedMedicine} />
+                </>
+              ) : (
+                <p className="text-white/70 dark:text-gray-400">
+                  Select a medicine to view information and chat.
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </main>
     </div>
   )
 }

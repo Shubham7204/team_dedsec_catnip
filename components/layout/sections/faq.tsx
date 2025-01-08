@@ -13,32 +13,28 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free NextJS Shadcn template.",
+    question: "How accurate is the medical report analysis?",
+    answer: "Our system uses advanced AI with RAG and Pinecone for context-rich insights from medical databases, providing highly accurate analysis. However, it's designed to assist healthcare professionals, not replace medical consultation.",
     value: "item-1",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    question: "Can I analyze any type of medical report?",
+    answer: "Yes, our system can analyze various medical reports including blood tests, imaging reports, and general health assessments. You can upload reports as images or text, and our AI will process them accordingly.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+    question: "How does the nutrition label analyzer work?",
+    answer: "The nutrition analyzer uses Gemini API to process both text and image-based nutrition labels. It extracts key nutritional information and provides clear insights about the food's nutritional content and health implications.",
     value: "item-3",
   },
   {
-    question: "Excepteur sint occaecat cupidata non proident sunt?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "What kind of medicine information can I get from the system?",
+    answer: "Using FDA and Gemini APIs, our medicine analyzer provides comprehensive information about medication usage, dosage, purpose, potential side effects, and contraindications. You can ask questions in user-friendly language.",
     value: "item-4",
   },
   {
-    question:
-      "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-    answer: "consectetur adipisicing elit. Sint labore.",
+    question: "Is my medical data secure and private?",
+    answer: "Yes, we take data privacy very seriously. All medical reports and personal information are processed securely and are not stored permanently in our system. We adhere to strict healthcare data protection standards.",
     value: "item-5",
   },
 ];
@@ -49,12 +45,8 @@ export const FAQSection = () => {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-lg text-primary font-medium tracking-wider">
-            FAQS
+            FAQs
           </h2>
-
-          <h3 className="text-3xl md:text-4xl font-bold mt-2">
-            Common Questions
-          </h3>
         </div>
 
         <Accordion 

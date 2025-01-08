@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -32,54 +32,57 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="min-h-screen bg-background">
+      <main className="container mx-auto px-6 py-12 max-w-7xl space-y-12">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+        <div className="text-center space-y-4">
+          <h2 className="text-lg text-primary font-medium tracking-wider">
+            PRODUCT ANALYSIS
+          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
             Product Ingredient Analyzer
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Simply upload a product image or choose from our examples to get detailed insights 
             about ingredients, nutritional value, and dietary information.
           </p>
         </div>
 
         {/* Main Content */}
-        <Card className="border-none shadow-lg">
-          <CardContent className="p-6">
+        <Card className="border-secondary/20 bg-card">
+          <CardContent className="p-8">
             <Tabs defaultValue="examples" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 gap-4 p-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 gap-4 bg-muted/50 p-2 mb-8">
                 <TabsTrigger 
                   value="examples" 
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-foreground"
                 >
                   <div className="flex items-center gap-2">
                     <Search className="w-4 h-4" />
-                    <span>Example Products</span>
+                    <span className="font-semibold">Example Products</span>
                   </div>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="upload"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-foreground"
                 >
                   <div className="flex items-center gap-2">
                     <Upload className="w-4 h-4" />
-                    <span>Upload Image</span>
+                    <span className="font-semibold">Upload Image</span>
                   </div>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="camera"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-foreground"
                 >
                   <div className="flex items-center gap-2">
                     <Camera className="w-4 h-4" />
-                    <span>Take Photo</span>
+                    <span className="font-semibold">Take Photo</span>
                   </div>
                 </TabsTrigger>
               </TabsList>
 
-              <div className="mt-4">
+              <div className="mt-6">
                 <TabsContent value="examples">
                   <ExampleProducts onSelect={setSelectedImage} />
                 </TabsContent>
@@ -98,23 +101,32 @@ export default function Home() {
 
         {/* Selected Image Section */}
         {selectedImage && (
-          <Card className="mt-8 overflow-hidden border-none shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row items-center gap-8">
+          <Card className="border-secondary/20 bg-card">
+            <CardContent className="p-8">
+              <div className="flex flex-col md:flex-row items-start gap-8">
                 <div className="w-full md:w-1/3">
-                  <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative aspect-square rounded-lg overflow-hidden bg-muted">
                     <img
                       src={selectedImage}
                       alt="Selected product"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
+                  {/* Product title and description */}
+                  <div className="mt-4 text-center">
+                    <h3 className="text-lg font-medium text-foreground">
+                      🍫 Chocolate Bar
+                    </h3>
+                    <p className="text-sm text-foreground/90">
+                      Parle Hide & Seek Chocolate Cookies
+                    </p>
+                  </div>
                 </div>
                 <div className="w-full md:w-2/3 space-y-4">
-                  <h2 className="text-2xl font-semibold text-gray-900">
+                  <h2 className="text-2xl font-bold text-foreground">
                     Selected Product
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Click analyze to get detailed information about this product's ingredients,
                     nutritional value, and dietary considerations.
                   </p>
@@ -123,16 +135,17 @@ export default function Home() {
                     disabled={isAnalyzing}
                     className="w-full md:w-auto"
                     size="lg"
+                    variant="default"
                   >
                     {isAnalyzing ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Analyzing...
+                        <span className="text-primary-foreground">Analyzing...</span>
                       </>
                     ) : (
                       <>
                         <Search className="w-4 h-4 mr-2" />
-                        Analyze Product
+                        <span className="text-primary-foreground">Analyze Product</span>
                       </>
                     )}
                   </Button>
@@ -144,7 +157,7 @@ export default function Home() {
 
         {/* Analysis Result */}
         {analysisResult && (
-          <div className="mt-8 animate-fade-in">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <AnalysisResult analysis={analysisResult} />
           </div>
         )}

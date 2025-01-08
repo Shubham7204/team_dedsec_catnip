@@ -1,80 +1,41 @@
-// import {
-//   ChevronLeft,
-//   ChevronRight,
-//   Copy,
-//   CreditCard,
-//   MoreVertical,
-//   Truck,
-// } from "lucide-react";
+// components/MessageBox.tsx
+import { Card, CardContent, CardFooter } from './ui/card';
+import Markdown from '@/components/markdown';
+import { Bot, User } from 'lucide-react';
 
-// import { Button } from "@/components/ui/button";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-//   CardTitle,
-// } from "@/components/ui/card";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-// import { Separator } from "@/components/ui/separator";
-// import Markdown from "./markdown";
-
-// type Props = {
-//   role?: string;
-//   content?: string;
-// };
-// const MessageBox = ({ role, content }: Props) => {
-//   return (
-//     <Card className="overflow-hidden">
-//       <CardContent className="p-6 text-sm">
-//         <Markdown text={content as string} />
-//       </CardContent>
-//       {role !== "user" && (
-//         <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
-//           <div className="text-xs text-muted-foreground">
-//             <span>Disclaimer:</span> The medical advice and recommendations provided by this
-//             application are for informational purposes only and should not
-//             replace professional medical diagnosis, treatment, or advice.
-//           </div>
-//         </CardFooter>
-//       )}
-//     </Card>
-//   );
-// };
-// export default MessageBox;
-
-import React from 'react'
-import { Card, CardContent, CardFooter } from './ui/card'
-import Markdown from './markdown'
-
-type Props = {
-  role: string,
-  content: string
+interface MessageBoxProps {
+  role: string;
+  content: string;
 }
 
-const MessageBox = ({ role, content }: Props) => {
+const MessageBox = ({ role, content }: MessageBoxProps) => {
+  const isUser = role === 'user';
+
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="p-6 text-sm">
-        {/* {content} */}
-        <Markdown text={content} />
-      </CardContent>
-      {role !== "user" && (
-        <CardFooter className="border-t bg-muted/50 px-6 py-3 text-xs text-muted-foreground">
-          Disclaimer: The medical advice and recommendations provided by this
-          application are for informational purposes only and should not
-          replace professional medical diagnosis, treatment, or advice.
-        </CardFooter>
-      )}
-    </Card>
-  )
-}
+    <div className={`flex gap-3 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+        isUser ? 'bg-primary' : 'bg-muted'
+      }`}>
+        {isUser ? (
+          <User className="w-4 h-4 text-primary-foreground" />
+        ) : (
+          <Bot className="w-4 h-4 text-foreground" />
+        )}
+      </div>
+      
+      <Card className={`flex-1 ${isUser ? 'bg-primary/10' : 'bg-background'}`}>
+        <CardContent className="p-4 text-sm">
+          <Markdown text={content} />
+        </CardContent>
+        {!isUser && (
+          <CardFooter className="text-xs text-muted-foreground bg-muted/50 p-3 border-t">
+            Disclaimer: This is AI-generated advice for information only. 
+            Consult healthcare professionals for medical decisions.
+          </CardFooter>
+        )}
+      </Card>
+    </div>
+  );
+};
 
-export default MessageBox
+export default MessageBox;

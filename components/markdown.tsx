@@ -1,18 +1,24 @@
+// components/markdown.tsx
 import React from "react";
-import markdownit from "markdown-it";
-import DOMPurify from 'dompurify';
+import ReactMarkdown from 'react-markdown';
 
-type Props = {
+interface MarkdownProps {
   text: string;
-};
+}
 
-const md = markdownit({
-});
-
-const Markdown = ({ text }: Props) => {
-  const htmlcontent = md.render(text);
-  const sanitized = DOMPurify.sanitize(htmlcontent);
-  return <div dangerouslySetInnerHTML={{ __html: sanitized }}></div>;
+const Markdown = ({ text }: MarkdownProps) => {
+  if (!text) return null;
+  
+  try {
+    return (
+      <div className="prose prose-sm dark:prose-invert max-w-none">
+        <ReactMarkdown>{text}</ReactMarkdown>
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering markdown:', error);
+    return <div className="text-red-500">Error rendering content</div>;
+  }
 };
 
 export default Markdown;

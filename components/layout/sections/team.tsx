@@ -27,85 +27,53 @@ interface SocialNetworkProps {
 export const TeamSection = () => {
   const teamList: TeamProps[] = [
     {
-      imageUrl: "https://i.pravatar.cc/250?img=58",
-      firstName: "Leo",
-      lastName: "Miranda",
-      positions: ["Vue Fronted Developer", "Creator Of This Website"],
+      imageUrl: "/azlan.jpg",
+      firstName: "Azlan",
+      lastName: "Khawar",
+      positions: ["Student at DJSCE, Mumbai", "AI/ML Developer"],
       socialNetworks: [
         {
           name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
+          url: "https://www.linkedin.com/in/azlan-khawar-b79193290/",
         },
         {
           name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-        {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
-        },
+          url: "https://github.com/azlan18",
+        }
       ],
     },
     {
-      imageUrl: "https://i.pravatar.cc/250?img=62",
-      firstName: "Sophia",
-      lastName: "Carter",
-      positions: ["UI/UX Designer", "Visual Artist"],
+      imageUrl: "/shubham2.jpg",
+      firstName: "Shubham",
+      lastName: "Mourya",
+      positions: ["Student at DJSCE, Mumbai", "Full Stack Developer"],
       socialNetworks: [
         {
           name: "LinkedIn",
-          url: "https://www.linkedin.com/in/sophia-carter/",
+          url: "https://www.linkedin.com/in/varad-sankhe-93387b243/",
         },
         {
           name: "Github",
-          url: "https://github.com/sophiaCarter",
-        },
-        {
-          name: "X",
-          url: "https://x.com/sophia_carter",
-        },
+          url: "https://github.com/Shubham7204/",
+        }
       ],
     },
     {
-      imageUrl: "https://i.pravatar.cc/250?img=34",
-      firstName: "Ethan",
-      lastName: "Johnson",
-      positions: ["Backend Developer", "Database Specialist"],
+      imageUrl: "/varad.jpg",
+      firstName: "Varad",
+      lastName: "Sankhe",
+      positions: ["Student at DJSCE, Mumbai", "Full Stack Developer"],
       socialNetworks: [
         {
           name: "LinkedIn",
-          url: "https://www.linkedin.com/in/ethan-johnson/",
+          url: "https://www.linkedin.com/in/varad-sankhe-93387b243/",
         },
         {
           name: "Github",
-          url: "https://github.com/ethanJohnson",
-        },
-        {
-          name: "X",
-          url: "https://x.com/ethan_johnson",
-        },
+          url: "https://github.com/varad-01",
+        }
       ],
-    },
-    {
-      imageUrl: "https://i.pravatar.cc/250?img=19",
-      firstName: "Ava",
-      lastName: "Miller",
-      positions: ["Project Manager", "Scrum Master"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/ava-miller/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/avaMiller",
-        },
-        {
-          name: "X",
-          url: "https://x.com/ava_miller",
-        },
-      ],
-    },
+    }
   ];
 
   const socialIcon = (socialName: string) => {
@@ -124,29 +92,29 @@ export const TeamSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-lg text-primary font-medium tracking-wider">
-            Team
+            Our Team
           </h2>
 
           <h3 className="text-3xl md:text-4xl font-bold">
-            The Company Dream Team
+            The Minds Behind MediAssist AI
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {teamList.map(({ imageUrl, firstName, lastName, positions, socialNetworks }, index) => (
             <Card
               key={index}
-              className="group bg-muted/50 dark:bg-card border-border/50 hover:border-border/100 transition-colors duration-200"
+              className="group bg-muted/50 dark:bg-card border-border/50 hover:border-border/100 transition-colors duration-200 max-w-sm"
             >
               <CardHeader className="p-0">
-                <div className="aspect-square overflow-hidden">
+                <div className="h-[200px] overflow-hidden"> {/* Adjusted height here */}
                   <Image
                     src={imageUrl}
                     alt={`${firstName} ${lastName}`}
-                    width={400}
-                    height={400}
-                    className="w-full h-full object-cover saturate-0 transition-all duration-300 group-hover:saturate-100 group-hover:scale-105"
-                    priority={index < 4}
+                    width={300}  // Reduced width
+                    height={200} // Reduced height
+                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                    priority={index < 3}
                   />
                 </div>
                 <div className="p-6">

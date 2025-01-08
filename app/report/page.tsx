@@ -1,75 +1,60 @@
-"use client";
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import {
-  Bot,
-  CircleAlert,
-  CircleAlertIcon,
-  DoorClosedIcon,
-  FileCheck2,
-  LucideCircleAlert,
-  OctagonAlert,
-  Plus,
-  Settings,
-  TriangleAlert,
-} from "lucide-react";
-import { ModeToggle } from "@/components/modetoggle";
+import { Settings, FileText } from "lucide-react";
 import { useState } from "react";
-import { useChat } from "ai/react";
 import ReportComponent from "@/components/ReportComponent";
-// import { toast } from "sonner";
 import { useToast } from "@/hooks/use-toast"
 import ChatComponent from "@/components/chatcomponent";
 
 const Home = () => {
-  const { toast } = useToast()
+  const { toast } = useToast();
+  const [reportData, setReportData] = useState("");
 
-  const [reportData, setreportData] = useState("");
   const onReportConfirmation = (data: string) => {
-    setreportData(data);
+    setReportData(data);
     toast({
-      description: "Updated!"
+      title: "Success",
+      description: "Report updated successfully",
+      variant: "default",
     });
-  }
+  };
 
   return (
-    <div className="grid h-screen w-full">
-      <div className="flex flex-col">
-        <header className="sticky top-0 z-10 flex h-[57px] bg-background items-center gap-1 border-b px-4">
-          <h1 className="text-xl font-semibold text-[#D90013]">
-            <span className="flex flex-row">Mr.AlmostMD</span>
-          </h1>
-          <div className="w-full flex flex-row justify-end gap-2">
-            <ModeToggle />
-            <Drawer>
-              <DrawerTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Settings />
-                  <span className="sr-only">Settings</span>
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent className="max-h-[80vh]">
+    <div className="flex h-screen bg-background">
+      {/* Sidebar */}
+      <aside className="hidden md:flex w-[350px] flex-col border-r bg-muted/10">
+        <div className="p-4 border-b">
+          <h2 className="text-lg font-semibold flex items-center gap-2">
+            <FileText className="w-5 h-5" />
+            Medical Reports
+          </h2>
+        </div>
+        <div className="flex-1 overflow-auto p-4">
+          <ReportComponent onReportConfirmation={onReportConfirmation} />
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <header className="h-14 border-b flex items-center justify-between px-4 bg-background">
+          <Drawer>
+            <DrawerTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Settings className="w-5 h-5" />
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+              <div className="p-4 max-h-[80vh] overflow-auto">
                 <ReportComponent onReportConfirmation={onReportConfirmation} />
-              </DrawerContent>
-            </Drawer>
-          </div>
+              </div>
+            </DrawerContent>
+          </Drawer>
         </header>
-        <main className="grid flex-1 gap-4 overflow-auto p-4
-        md:grid-cols-2
-        lg:grid-cols-3"
-        >
-          <div
-            className="hidden md:flex flex-col"
-          >
-            <ReportComponent onReportConfirmation={onReportConfirmation} />
-            {/* <SideComponent onReportConfirmation={onReportConfirmation} /> */}
-          </div>
-          <div
-            className="lg:col-span-2"
-          >
-            <ChatComponent reportData={reportData} />
-          </div>
+        
+        <main className="flex-1 p-4">
+          <ChatComponent reportData={reportData} />
         </main>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import { ContactSection } from "@/components/layout/sections/contact";
 import { FAQSection } from "@/components/layout/sections/faq";
 import { FeaturesSection } from "@/components/layout/sections/features";
 import { FooterSection } from "@/components/layout/sections/footer";
@@ -41,7 +40,6 @@ export default function Home() {
       <FeaturesSection />
       <TestimonialSection />
       <TeamSection />
-      <ContactSection />
       <FAQSection />
       <FooterSection />
     </>

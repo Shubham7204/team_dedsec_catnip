@@ -1,43 +1,24 @@
-// import React from "react";
-// // import Markdown from "./markdown";
-// import { Bot, User2 } from "lucide-react";
-// import { Message } from "ai/react";
-// import MessageBox from "./messagebox";
-
-// type Props = {
-//   messages: Message[];
-//   isLoading: boolean;
-// };
-
-// const Messages = ({ messages, isLoading }: Props) => {
-//   return (
-//     <div className="flex flex-col gap-4">
-//       {messages.map((m, index) => {
-//         return <MessageBox key={index} role={m.role} content={m.content}/>;
-//       })}
-//     </div>
-//   );
-// };
-
-// export default Messages;
-
+// components/Messages.tsx
 import { Message } from 'ai';
-import React from 'react'
-import MessageBox from './messagebox';
+import MessageBox from '@/components/messagebox';
 
-type Props = {
+interface MessagesProps {
   messages: Message[];
   isLoading: boolean;
 }
 
-const Messages = ({ messages, isLoading }: Props) => {
+const Messages = ({ messages, isLoading }: MessagesProps) => {
   return (
-    <div className='flex flex-col gap-4'>
-      {messages.map((m, index)=>{
-        return <MessageBox key={index} role={m.role} content={m.content} />
-      })}
+    <div className="space-y-6">
+      {messages.map((message, index) => (
+        <MessageBox 
+          key={index}
+          role={message.role}
+          content={message.content}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Messages
+export default Messages;
