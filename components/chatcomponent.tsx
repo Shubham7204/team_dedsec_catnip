@@ -38,8 +38,8 @@ const ChatComponent = ({ reportData }: ChatComponentProps) => {
       <div className="flex justify-between items-center">
         <h2 className="text-lg font-medium">Chat Session</h2>
         <Badge 
-          variant={reportData ? "success" : "secondary"}
-          className="px-3 py-1"
+          variant={reportData ? "default" : "secondary"}
+          className={`px-3 py-1 ${reportData ? 'bg-green-500 hover:bg-green-600' : ''}`}
         >
           {reportData ? "Report Loaded" : "No Report"}
         </Badge>
@@ -51,7 +51,7 @@ const ChatComponent = ({ reportData }: ChatComponentProps) => {
       </div>
 
       {/* Relevant Info Section */}
-      {data?.length > 0 && getRetrievals() && (
+      {data && data.length > 0 && getRetrievals() && (
         <Collapsible className="bg-muted/50 rounded-lg">
           <CollapsibleTrigger className="flex w-full items-center justify-between p-4 hover:bg-muted/70 transition-colors">
             <div className="flex items-center gap-2">
@@ -77,7 +77,7 @@ const ChatComponent = ({ reportData }: ChatComponentProps) => {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(e, {
-            data: { reportData },
+            data: { reportData: reportData || '' },
           });
         }}
         className="flex flex-col gap-2"
