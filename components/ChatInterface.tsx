@@ -43,8 +43,8 @@ export default function ChatInterface({ medicine }: ChatInterfaceProps) {
     setError('');
     setIsLoading(true);
 
-    // Add user message to chat
-    const newMessages = [...messages, { role: 'user', content: userMessage }];
+    const userMessageObj: Message = { role: 'user', content: userMessage };
+    const newMessages: Message[] = [...messages, userMessageObj];
     setMessages(newMessages);
 
     try {
@@ -63,11 +63,12 @@ export default function ChatInterface({ medicine }: ChatInterfaceProps) {
         throw new Error(data.error || 'Failed to get response');
       }
 
-      // Add assistant's response to chat
-      setMessages([...newMessages, { 
+      const assistantMessage: Message = { 
         role: 'assistant', 
         content: data.response 
-      }]);
+      };
+      
+      setMessages([...newMessages, assistantMessage]);
 
     } catch (err) {
       console.error('Chat error:', err);
@@ -101,7 +102,7 @@ export default function ChatInterface({ medicine }: ChatInterfaceProps) {
               className={`max-w-[80%] rounded-lg px-4 py-2 ${
                 message.role === 'user' 
                   ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-100'
+                  : 'bg-gray-100 dark:bg-gray-800'
               }`}
             >
               <ReactMarkdown 
