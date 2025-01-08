@@ -8,12 +8,23 @@ import MedicineInfo from '@/components/MedicineInfo'
 import ChatInterface from '@/components/ChatInterface'
 import { Search, Clock } from 'lucide-react'
 
+interface Medicine {
+  id: string; // or number, depending on your data structure
+  name: string;
+  genericName?: string; // Make this optional if it may not always be present
+  description: string; // Add this property
+  indications: string; // Add this property
+  warnings: string; // Add this property
+  dosage: string; // Add this property
+  // Add other properties as needed
+}
+
 const MAX_RECENT_SEARCHES = 5
 
 export default function Home() {
   const [query, setQuery] = useState('')
-  const [medicines, setMedicines] = useState([])
-  const [selectedMedicine, setSelectedMedicine] = useState(null)
+  const [medicines, setMedicines] = useState<Medicine[]>([])
+  const [selectedMedicine, setSelectedMedicine] = useState<Medicine | null>(null)
   const [isSearching, setIsSearching] = useState(false)
   const [error, setError] = useState('')
   const [recentSearches, setRecentSearches] = useState<string[]>([])
@@ -45,9 +56,9 @@ export default function Home() {
       } else {
         throw new Error(data.error || 'Error searching for medicines')
       }
-    } catch (error) {
-      console.error('Error searching medicines:', error)
-      setError(error.message || 'Error searching for medicines')
+    } catch (err) {
+      console.error('Error searching medicines:', err)
+      setError(err instanceof Error ? err.message : 'Error searching for medicines')
       setMedicines([])
     } finally {
       setIsSearching(false)
