@@ -16,7 +16,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Star } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
+import AutoplayPlugin from "embla-carousel-autoplay";
 
 interface ReviewProps {
   image: string;
@@ -73,7 +73,11 @@ const reviewList: ReviewProps[] = [
 
 export const TestimonialSection = () => {
   const plugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
+    AutoplayPlugin({
+      delay: 4000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+    })
   );
 
   return (
@@ -97,7 +101,6 @@ export const TestimonialSection = () => {
           align: "start",
           loop: true,
         }}
-        plugins={[plugin.current]}
         className="relative w-[90%] lg:max-w-screen-xl mx-auto"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
