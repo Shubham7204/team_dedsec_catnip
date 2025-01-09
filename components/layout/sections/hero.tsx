@@ -25,9 +25,14 @@ export const HeroSection = () => {
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-full md:w-auto px-8 py-3 font-bold group/arrow dark:bg-primary dark:text-white dark:bg-black dark:hover:bg-primary/90">
-              Get Started
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+            <Button
+              asChild
+              className="w-full md:w-auto px-8 py-3 font-bold group/arrow dark:bg-primary dark:text-white dark:bg-black dark:hover:bg-primary/90"
+            >
+              <Link href="/food">
+                Get Started
+                <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+              </Link>
             </Button>
 
             <Button
